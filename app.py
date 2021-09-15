@@ -10,7 +10,7 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://temi:password@localhost/temidb'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] ='postgres://cphmjrvynwjjrr:423e3e2da04142d9be0c841bc15f584f1fb67d620117bc90a144deb78f3d877c@ec2-54-146-84-101.compute-1.amazonaws.com:5432/ddi5051emhns2t'
+    app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://cphmjrvynwjjrr:423e3e2da04142d9be0c841bc15f584f1fb67d620117bc90a144deb78f3d877c@ec2-54-146-84-101.compute-1.amazonaws.com:5432/ddi5051emhns2t'
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
