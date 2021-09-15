@@ -1,0 +1,27 @@
+{% extends "base.html" %} {% block content %}
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-8">
+    <h4>The courses required to do for this semester are</h4>
+    <table class="table" table-borderless>
+      <thead>
+        <tr>
+          <th scope="col">Course Code</th>
+          <th scope="col">Course Title</th>
+          <th scope="col">Units</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for course in courses %}
+        <tr>
+          <td scope="row">{{course['course_code']}}</td>
+          <td>{{course['course_title']}}</td>
+          <td>{{course['unit']}}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <div class="col-md-2"></div>
+</div>
+{% endblock %}

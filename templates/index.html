@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+
+    <div class="container-fluid px-1 py-5 mx-auto">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-1"></div>
+        <div class="col-md-10 text-center">
+          <h3></h3>
+          <p class="blue-text">
+            Just answer a few questions<br />
+            so that we can recommend grades you should work towards.
+          </p>
+          <div class="card">
+            <h5 class="text-center mb-4">Fill this form</h5>
+            <form class="form-card" method="POST" action="/next">
+              <div class="row justify-content-between text-left">
+                <div class="form-group  flex-column d-flex">
+                  <label class="form-control-label px-3">Student's Last Cummulative Grade point<span
+                      class="text-danger"> *</span></label>
+                  <input class="form-control" type="text" id="fname" name="gpa"
+                    placeholder="Enter student's last Cpga" onblur="validate(1)" />
+                </div>
+              </div>
+              <div class="row justify-content-between text-left">
+                <div class="form-group  flex-column d-flex">
+                  <label class="form-control-label px-3">Student's Part<span class="text-danger"> *</span></label>
+                  <select name="part" class="form-select form-control" aria-label="Default select example">
+
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                    <option value="4">Four</option>
+                    <option value="5">Five</option>
+                  </select>
+
+                </div>
+              </div>
+              <div class="row justify-content-between text-left">
+                <div class="form-group  flex-column d-flex">
+                  <label class="form-control-label px-3">Option<span class="text-danger"> *</span></label>
+                  <select name="options" class="form-select form-control" aria-label="Default select example">
+                    <option value="Engineering">Engineering</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Economics">Economics</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row justify-content-between text-left">
+                <div class="form-group  flex-column d-flex">
+                  <label class="form-control-label px-3">Current Semester<span class="text-danger"> *</span></label>
+                  <select name="semester" class="form-select form-control" aria-label="Default select example">
+                    <option value="Harmattan">Harmattan</option>
+                    <option value="Rain">Rain</option>
+                  </select>
+                </div>
+              </div>
+              
+
+
+
+                <div class="row justify-content-end">
+                  <div class="form-group ">
+                    <button type="submit" class="btn-block btn-primary">
+                      Next
+                    </button>
+                  </div>
+                </div>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-1"></div>
+      </div>
+    </div>
+    <!-- <div class="row marketing">
+        <div class="col-lg-6">
+          <h4>Bucket List</h4>
+          <p>
+            Donec id elit non mi porta gravida at eget metus. Maecenas faucibus
+            mollis interdum.
+          </p>
+
+          <h4>Bucket List</h4>
+          <p>
+            Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras
+            mattis consectetur purus sit amet fermentum.
+          </p>
+
+          <h4>Bucket List</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+
+        <div class="col-lg-6">
+          <h4>Bucket List</h4>
+          <p>
+            Donec id elit non mi porta gravida at eget metus. Maecenas faucibus
+            mollis interdum.
+          </p>
+
+          <h4>Bucket List</h4>
+          <p>
+            Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras
+            mattis consectetur purus sit amet fermentum.
+          </p>
+
+          <h4>Bucket List</h4>
+          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+        </div>
+      </div> -->
+
+{% endblock %}  
