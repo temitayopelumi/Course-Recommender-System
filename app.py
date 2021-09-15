@@ -71,5 +71,5 @@ def home():
         return render_template("next.html", courses = courses) # passes user_data variable into the index.html file.
     return render_template("index.html")
 
-if __name__ == '__main__':
-    app.run()
+
+app.run()
