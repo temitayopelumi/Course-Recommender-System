@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from marshmallow import fields
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
+import os
 
 app = Flask(__name__)
 ENV = 'prod'
@@ -10,7 +11,8 @@ if ENV == 'dev':
     app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://temi:password@localhost/temidb'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://cphmjrvynwjjrr:423e3e2da04142d9be0c841bc15f584f1fb67d620117bc90a144deb78f3d877c@ec2-54-146-84-101.compute-1.amazonaws.com:5432/ddi5051emhns2t'
+    app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://mzxkrgcsaxjpmb:789a71c49a2876f8a8b01528a8d67dcb094b2d12a6009da7891b49732af1d7d9@ec2-54-146-84-101.compute-1.amazonaws.com:5432/devhf16j3594ku'
+    
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
