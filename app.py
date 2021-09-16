@@ -5,8 +5,8 @@ from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 import os
 
 app = Flask(__name__)
-ENV = 'dev'
-if ENV == 'prod':
+ENV = 'prod'
+if ENV == 'env':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://temi:password@localhost/temidb'
 else:
