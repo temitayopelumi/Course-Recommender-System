@@ -91,7 +91,7 @@ def home():
         # user_data = Course.query.filter_by(level=part, option=option, semester=semester)
 
         # passes user_data variable into the index.html file.
-        return render_template("next.html", courses=courses, prev_courses=prev_courses)
+        return render_template("next.html", courses=courses, prev_courses=prev_courses, unit=unit)
     return render_template("index.html")
 
 

@@ -14,7 +14,7 @@
     </ol></div>
     <div class="col-md-1"></div>
   <div class="col-md-7">
-        {% if prev_courses %}
+        {% if unit > 1 %}
         <h4>Enter Student's Current GP and Grade in Previous Attempted Courses</h4>
         <div class=" text-center">
           <form class="form-card" action="/">
@@ -64,7 +64,7 @@
           </form>
         </div>
         {% else %}
-        <h3>Cnt predict. New Student</h3>
+        <h3>Can't recommend. New Student</h3>
         {% endif %}
       </div>
     </div>
