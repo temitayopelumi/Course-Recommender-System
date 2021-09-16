@@ -1,114 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <title>Course Recommender</title>
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <!-- <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+      integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+      crossorigin="anonymous"
+    /> -->
 
-<head>
-  <title>Python Flask Bucket List App</title>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+    <!-- Optional theme -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
+      crossorigin="anonymous"
+    />
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-    integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-    crossorigin="anonymous"></script>
+    <style>
+      body {
+        color: #000;
+        overflow-x: hidden;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+      }
 
-  <style>
-    body {
-      color: #000;
-      overflow-x: hidden;
-      height: 100%;
-      background-repeat: no-repeat;
-      background-size: 100% 100%
-    }
+      .card {
+        padding: 30px 40px;
+        margin-top: 60px;
+        margin-bottom: 60px;
+        border: none !important;
+        box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2);
+      }
 
-    .card {
-      padding: 30px 40px;
-      margin-top: 60px;
-      margin-bottom: 60px;
-      border: none !important;
-      box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2)
-    }
+      .blue-text {
+        color: #00bcd4;
+      }
 
-    .blue-text {
-      color: #00BCD4
-    }
+      .form-control-label {
+        margin-bottom: 0;
+      }
 
-    .form-control-label {
-      margin-bottom: 0
-    }
+      input,
+      textarea,
+      button {
+        padding: 8px 15px;
+        border-radius: 5px !important;
+        margin: 5px 0px;
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        font-size: 18px !important;
+        font-weight: 300;
+      }
 
-    input,
-    textarea,
-    button {
-      padding: 8px 15px;
-      border-radius: 5px !important;
-      margin: 5px 0px;
-      box-sizing: border-box;
-      border: 1px solid #ccc;
-      font-size: 18px !important;
-      font-weight: 300
-    }
+      input:focus,
+      textarea:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        border: 1px solid #00bcd4;
+        outline-width: 0;
+        font-weight: 400;
+      }
 
-    input:focus,
-    textarea:focus {
-      -moz-box-shadow: none !important;
-      -webkit-box-shadow: none !important;
-      box-shadow: none !important;
-      border: 1px solid #00BCD4;
-      outline-width: 0;
-      font-weight: 400
-    }
+      .btn-block {
+        text-transform: uppercase;
+        font-size: 15px !important;
+        font-weight: 400;
+        height: 43px;
+        cursor: pointer;
+      }
 
-    .btn-block {
-      text-transform: uppercase;
-      font-size: 15px !important;
-      font-weight: 400;
-      height: 43px;
-      cursor: pointer
-    }
+      .btn-block:hover {
+        color: #fff !important;
+      }
 
-    .btn-block:hover {
-      color: #fff !important
-    }
+      button:focus {
+        -moz-box-shadow: none !important;
+        -webkit-box-shadow: none !important;
+        box-shadow: none !important;
+        outline-width: 0;
+      }
+      .jumbotron {
+        padding-top: 5px;
+        padding-bottom: 5px;
+      }
+    </style>
+  </head>
 
-    button:focus {
-      -moz-box-shadow: none !important;
-      -webkit-box-shadow: none !important;
-      box-shadow: none !important;
-      outline-width: 0
-    }
-    .jumbotron {
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-  </style>
-</head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <nav>
+          <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="/">Home</a></li>
+          </ul>
+        </nav>
+        <h1 class="text-muted">Course Recommender System</h1>
+      </div>
 
-<body>
-  <div class="container">
-    <div class="header">
-      <nav>
-        <ul class="nav nav-pills pull-right">
-          <li role="presentation" class="active"><a href="/">Home</a></li>
-        </ul>
-      </nav>
-      <h1 class="text-muted">Course Recommender System</h1>
-    </div>
+      <div class="jumbotron">
+        <h3 class="text-center">Recommend in just 3 steps</h3>
+        <p class="lead"></p>
+      </div>
 
-    <div class="jumbotron">
-      <h3 class="text-center">Recommend in just 3 steps</h3>
-      <p class="lead"></p>
-    </div>
-
-    {% block content %}{% endblock %}
-    <footer class="footer text-center">
+      {% block content %}{% endblock %}
+      <footer class="footer text-center">
         <p>&copy; Course Recommender 2021</p>
       </footer>
     </div>
   </body>
-  
-  </html>
+</html>

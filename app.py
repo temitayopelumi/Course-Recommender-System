@@ -5,14 +5,14 @@ from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 import os
 
 app = Flask(__name__)
-ENV = 'prod'
-if ENV == 'dev':
+ENV = 'dev'
+if ENV == 'prod':
     app.debug = True
-    app.config['SQLALCHEMY_DATABASE_URI'] ='postgresql://temi:password@localhost/temidb'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://temi:password@localhost/temidb'
 else:
     app.debug = False
-    app.config['SQLALCHEMY_DATABASE_URI'] =  'postgresql://mzxkrgcsaxjpmb:789a71c49a2876f8a8b01528a8d67dcb094b2d12a6009da7891b49732af1d7d9@ec2-54-146-84-101.compute-1.amazonaws.com:5432/devhf16j3594ku'
-    
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mzxkrgcsaxjpmb:789a71c49a2876f8a8b01528a8d67dcb094b2d12a6009da7891b49732af1d7d9@ec2-54-146-84-101.compute-1.amazonaws.com:5432/devhf16j3594ku'
+
 
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -34,7 +34,7 @@ class Course(db.Model):
     #     db.session.commit()
     #     return self
 
-    def __init__(self, course_code, course_title, level, option,semester, unit):
+    def __init__(self, course_code, course_title, level, option, semester, unit):
         self.course_code = course_code
         self.course_title = course_title
         self.level = level
@@ -67,21 +67,34 @@ class CourseSchema(SQLAlchemyAutoSchema):
 def hello_world():  # put application's code here
     return render_template('index.html')
 
+
 @app.route('/next', methods=["GET", "POST"])
 def home():
     if request.form:
-        data=request.form
-        GPA=data['gpa']
-        part=data['part']
+        data = request.form
+        part = data['part']
         option = data['options']
         semester = data['semester']
-        user_data = Course.query.filter_by(level=part, option=option, semester=semester)
+        user_data = Course.query.filter_by(
+            level=part, option=option, semester=semester)
+        if semester == "Harmattan":
+            unit = int(1 + ((int(part)-1)*2))
+        elif semester == "Rain":
+            unit = int((1 + ((int(part)-1)*2)) + 1)
+        print(unit)
+        prev_courses = Course.query.filter(Course.unit < unit)
         course_schema = CourseSchema(many=True)
         courses = course_schema.dump(user_data)
+        
+        # prev_courses = course_schema.dump(prev_courses)
+
         # user_data = Course.query.filter_by(level=part, option=option, semester=semester)
-    
-        return render_template("next.html", courses = courses) # passes user_data variable into the index.html file.
+
+        # passes user_data variable into the index.html file.
+        return render_template("next.html", courses=courses, prev_courses=prev_courses)
     return render_template("index.html")
+
+
 @app.route('/addcourse', methods=['GET', 'POST'])
 def course():
     if request.method == "POST":
@@ -90,12 +103,12 @@ def course():
         part = request.form['part']
         option = request.form['options']
         unit = request.form['unit']
-        semester = request.form['semester'] 
-        data = Course(course_code, course_title, part, option, semester,unit)
+        semester = request.form['semester']
+        data = Course(course_code, course_title, part, option, semester, unit)
         db.session.add(data)
         db.session.commit()
         return "done"
-    
+
     return render_template("courseform.html")
 
 
