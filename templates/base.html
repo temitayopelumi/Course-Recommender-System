@@ -81,6 +81,10 @@
       box-shadow: none !important;
       outline-width: 0
     }
+    .jumbotron {
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
   </style>
 </head>
 
@@ -92,17 +96,17 @@
           <li role="presentation" class="active"><a href="/">Home</a></li>
         </ul>
       </nav>
-      <h3 class="text-muted">Course Recommender System</h3>
+      <h1 class="text-muted">Course Recommender System</h1>
     </div>
 
     <div class="jumbotron">
-      <h1>Recommend in just 3 steps</h1>
+      <h3 class="text-center">Recommend in just 3 steps</h3>
       <p class="lead"></p>
     </div>
 
     {% block content %}{% endblock %}
-    <footer class="footer">
-        <p>&copy; Company 2021</p>
+    <footer class="footer text-center">
+        <p>&copy; Course Recommender 2021</p>
       </footer>
     </div>
   </body>
