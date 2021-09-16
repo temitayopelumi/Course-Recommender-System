@@ -1,22 +1,75 @@
 {% extends "base.html" %} {% block content %}
 <div class="row">
-  <div class="col-md-2"></div>
-  <div class="col-md-8">
-    <h4>The courses required to do for this semester are</h4>
-    <table class="table" table-borderless>
-      <thead>
-        <tr>
-          <th scope="col">Course Code</th>
-        </tr>
-      </thead>
-      <tbody>
-        {% for course in courses %}
+  <div class="col-md-3"><h4>The courses required to do for this semester are</h4>
+    <ol class="list-group list-group-numbered">
+      <li class="list-group-item"><strong>Course Code</strong></li>
+
+      {% for course in courses %}
+      <li class="list-group-item">
         <tr>
           <td scope="row">{{course['course_code']}}</td>
         </tr>
-        {% endfor %}
-      </tbody>
-    </table>
+      </li>
+      {% endfor %}
+    </ol></div>
+    <div class="col-md-1"></div>
+  <div class="col-md-7">
+        {% if prev_courses %}
+        <h4>Enter Student's Current GP and Grade in Previous Attempted Courses</h4>
+        <div class=" text-center">
+          <form class="form-card" action="/">
+            <div class="row justify-content-between ">
+              <div class="form-group flex-column d-flex">
+                <label class="form-control-label"
+                  >Student's Last Cummulative Grade point<span
+                    class="text-danger"
+                  >
+                    *</span
+                  ></label
+                >
+                <input
+                  class="form-control"
+                  type="text"
+                  id="fname"
+                  name="gpa"
+                  placeholder="Enter student's last Cpga"
+                  onblur="validate(1)"
+                />
+              </div>
+            </div>
+            {% for prev_course in prev_courses %}
+            <div class="row justify-content-between text-left">
+              <div class="form-group flex-column d-flex">
+                <label class="form-control-label" for="prev_course"
+                  >{{prev_course['course_code']}}
+                  <span class="text-danger"> *</span></label
+                >
+                <input
+                  placeholder="Enter student's grade"
+                  class="form-control"
+                  name="{{prev_course['course_code']}}"
+                  type="text"
+                />
+              </div>
+            </div>
+
+            {% endfor %}
+            <div class="row justify-content-end">
+              <div class="form-group">
+                <button type="submit" class="btn-block btn-primary">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        {% else %}
+        <h3>Cnt predict. New Student</h3>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+    
   </div>
   <div class="col-md-2"></div>
 </div>
