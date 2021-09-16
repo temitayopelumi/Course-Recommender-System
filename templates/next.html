@@ -7,16 +7,12 @@
       <thead>
         <tr>
           <th scope="col">Course Code</th>
-          <th scope="col">Course Title</th>
-          <th scope="col">Units</th>
         </tr>
       </thead>
       <tbody>
         {% for course in courses %}
         <tr>
           <td scope="row">{{course['course_code']}}</td>
-          <td>{{course['course_title']}}</td>
-          <td>{{course['unit']}}</td>
         </tr>
         {% endfor %}
       </tbody>
