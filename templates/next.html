@@ -1,9 +1,9 @@
 {% extends "base.html" %} {% block content %}
 <div class="row">
-  <div class="col-md-3"><h4>The courses required to do for this semester are</h4>
+  <div class="col-md-3">
+    <h4>The courses required to do for this semester are</h4>
     <ol class="list-group list-group-numbered">
       <li class="list-group-item"><strong>Course Code</strong></li>
-
       {% for course in courses %}
       <li class="list-group-item">
         <tr>
@@ -11,35 +11,159 @@
         </tr>
       </li>
       {% endfor %}
-    </ol></div>
-    <div class="col-md-1"></div>
+    </ol>
+  </div>
+  <div class="col-md-1"></div>
   <div class="col-md-7">
-        {% if unit > 1 %}
-        <h4>Enter Student's Current GP and Grade in Previous Attempted Courses</h4>
-        <div class=" text-center">
-          <form class="form-card" action="/">
-            <div class="row justify-content-between ">
-              <div class="form-group flex-column d-flex">
-                <label class="form-control-label"
-                  >Student's Last Cummulative Grade point<span
-                    class="text-danger"
-                  >
-                    *</span
-                  ></label
-                >
-                <input
-                  class="form-control"
-                  type="text"
-                  id="fname"
-                  name="gpa"
-                  placeholder="Enter student's last Cpga"
-                  onblur="validate(1)"
-                />
-              </div>
-            </div>
-            {% for prev_course in prev_courses %}
+    {% if unit > 1 %}
+    <h4>Enter Student's Current GP and Grade in Previous Attempted Courses</h4>
+    <div class=" text-center">
+      <form id="regForm">
+        <div class="text-left form-group ">
+          <label class="text-left font-weight-bold"
+            >Student's Last Cummulative Grade point<span
+              class="text-danger"
+            >
+              *</span
+            ></label
+          >
+          <p><input
+            class="form-control"
+            oninput="this.className = ''"
+            name="gpa"
+            placeholder="Enter student's last Cpga"
+            
+          /></p>
+        </div>
+        <!-- One "tab" for each step in the form: -->
+        {% if p1H %}
+        <div class="tab text-left font-weight-bold">Part One Harmattan Semester: <br><br>
+          {% for p in p1H %}
+            <label class="text-left" for="">{{p['course_code']}}</label>
+          <p><input class="form-control" placeholder="Enter student's Grade..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if p1R %}
+        <div class="tab text-left font-weight-bold">Part One Rain Semester: <br><br>
+          {% for p in p1R %}
+          <label class="text-left" for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if p2H %}
+        <div class="tab text-left font-weight-bold">Part Two Harmattan Semester: <br><br>
+          {% for p in p2H %}
+          <label class="text-left" for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if p2R %}
+        <div class="tab text-left font-weight-bold">Part Two Rain Semester: <br><br>
+          {% for p in p2R %}
+          <label class="text-left" for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if p3H%}
+        <div class="tab text-left font-weight-bold">Part Three Harmattan Semester: <br><br>
+          {% for p in p3H %}
+          <label class="text-left" for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if p3R %}
+        <div class="tab text-left font-weight-bold">Part Three Rain Semester: <br><br>
+          {% for p in p3R %}
+          <label class="text-left"for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+
+        {% if p4H %}
+        <div class="tab text-left font-weight-bold">Part Four Harmattan Semester: <br><br>
+          {% for p in p4H %}
+          <label  class="text-left"for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% if p4R %}
+        <div class="tab text-left font-weight-bold">Part Four Rain Semester: <br><br>
+          {% for p in p4R %}
+          <label  class="text-left"for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% if p5H %}
+        <div class="tab text-left font-weight-bold">Part Five Harmattan Semester: <br><br>
+          {% for p in p5H %}
+          <label  class="text-left"for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+        {% if p5R %}
+        <div class="tab text-left font-weight-bold">Part Five Rain Semester: <br><br>
+          {% for p in p5R %}
+          <label  class="text-left"for="">{{p['course_code']}}</label>
+        <p><input class="form-control" placeholder="First name..." oninput="this.className = ''" name="{{p['course_code']}}"></p>
+        {% endfor %}
+        </div>
+        {% endif %}
+        <div style="overflow:auto;">
+          <div style="float:right;">
+            <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
+            <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+          </div>
+        </div>
+        <!-- Circles which indicates the steps of the form: -->
+        <div style="text-align:center;margin-top:40px;">
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          <span class="step"></span>
+          
+          
+        </div>
+      </form>
+    </div>
+
+    <!-- {% for prev_course in prev_courses %}
             <div class="row justify-content-between text-left">
               <div class="form-group flex-column d-flex">
+                 <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Part one Harmattan semester
+                  </button>
+                  <div class="dropdown-menu">
+                  <label  class="form-control-label dropdown-item" for="prev_course"
+                  >{{prev_course['course_code']}}
+                  <span class="text-danger"> *</span></label
+                >
+                <input
+                  placeholder="Enter student's grade"
+                  class="form-control dropdown-item"
+                  name="{{prev_course['course_code']}}"
+                  type="text"
+                />
+                 </div>
+                </div>
+                
                 <label class="form-control-label" for="prev_course"
                   >{{prev_course['course_code']}}
                   <span class="text-danger"> *</span></label
@@ -54,23 +178,16 @@
             </div>
 
             {% endfor %}
-            <div class="row justify-content-end">
-              <div class="form-group">
-                <button type="submit" class="btn-block btn-primary">
-                  Submit
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-        {% else %}
-        <h3>Can't recommend. New Student</h3>
-        {% endif %}
-      </div>
-    </div>
+           
+        </div>-->
+        {% else %}  
+    <h3>Can't recommend. New Student</h3>
+    {% endif %}
   </div>
-    
-  </div>
-  <div class="col-md-2"></div>
+</div>
+
+
+
+<div class="col-md-2"></div>
 </div>
 {% endblock %}
