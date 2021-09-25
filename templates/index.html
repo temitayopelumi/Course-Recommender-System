@@ -1,91 +1,66 @@
 {% extends "base.html" %}
- 
+
 {% block content %}
 
-    <div class="container-fluid px-1 py-5 mx-auto">
-      <div class="row d-flex justify-content-center">
-        <div class="col-md-1"></div>
-        <div class="col-md-5 text-center">
-          <h3></h3>
-          <p class="blue-text">
-            Just answer a few questions<br />
-            so that we can recommend grades you should work towards.
-          </p>
-          <div class="card">
-            <h5 class="text-center mb-4">Fill this form</h5>
-            <form  method="POST" action="/next">
-                <div class="form-group">
-                  <label class="">Student's Part<span class="text-danger"> *</span></label>
-                  <select name="part" class="form-control">
-                    <option value="1">One</option>
-                    <option value="2">Two</option>
-                    <option value="3">Three</option>
-                    <option value="4">Four</option>
-                    <option value="5">Five</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label>Option<span class="text-danger"> *</span></label>
-                  <select name="options" class="form-control" >
-                    <option value="Engineering">Engineering</option>
-                    <option value="Mathematics">Mathematics</option>
-                    <option value="Economics">Economics</option>
-                  </select>
-                </div>
-                <div class="form-group">
-                  <label class="text-left">Current Semester<span class="text-danger"> *</span></label>
-                  <select name="semester" class="form-control" >
-                    <option value="Harmattan">Harmattan</option>
-                    <option value="Rain">Rain</option>
-                  </select>
-                </div>
-                <div class="row justify-content-end">
-                  <div class="form-group ">
-                    <button type="submit" class="btn-block btn-primary">
-                      Next
-                    </button>
-                  </div>
-                </div>
-            </form>
-          </div>
-        </div>
-        <div class="col-md-1"></div>
+<div class="mt-10 sm:mt-0">
+  <div class="md:grid md:grid-cols-3 md:gap-6">
+    <div class="md:col-span-1">
+      <div class="px-4 sm:px-0 pt-5">
+        <h3 class="text-xl font-medium leading-6 text-gray-900">Student's Information</h3>
+        <p class="mt-1 text-lg text-blue-600">
+          Just answer a few questions
+          so that we can recommend grades you should work towards.
+        </p>
       </div>
     </div>
-    <!-- <div class="row marketing">
-        <div class="col-lg-6">
-          <h4>Bucket List</h4>
-          <p>
-            Donec id elit non mi porta gravida at eget metus. Maecenas faucibus
-            mollis interdum.
-          </p>
+    <div class="mt-5 md:mt-0 md:col-span-2">
+      <form method="POST" action="/next">
+        <div class="shadow overflow-hidden sm:rounded-md">
+          <div class="px-4 py-5 bg-white sm:p-6">
+            <div class="grid  gap-6">
+              <div class="col-span-6 sm:col-span-3"><label class="block text-sm font-medium text-gray-700">Student's
+                  Part<span class="text-danger">
+                    *</span></label>
+                <select name="part"
+                  class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                  <option value="1">One</option>
+                  <option value="2">Two</option>
+                  <option value="3">Three</option>
+                  <option value="4">Four</option>
+                  <option value="5">Five</option>
+                </select>
+              </div>
 
-          <h4>Bucket List</h4>
-          <p>
-            Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras
-            mattis consectetur purus sit amet fermentum.
-          </p>
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">Option<span class="text-danger"> *</span></label>
+              <select name="options"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="Engineering">Engineering</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Economics">Economics</option>
+              </select>
+            </div>
+            <div class="col-span-6 sm:col-span-3">
+              <label class="block text-sm font-medium text-gray-700">Current Semester<span class="text-danger">
+                  *</span></label>
+              <select name="semester"
+                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                <option value="Harmattan">Harmattan</option>
+                <option value="Rain">Rain</option>
+              </select>
+            </div>
+          </div>
+          <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
 
-          <h4>Bucket List</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
+            <button type="submit"
+              class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+              Next
+            </button>
+          </div>
         </div>
-
-        <div class="col-lg-6">
-          <h4>Bucket List</h4>
-          <p>
-            Donec id elit non mi porta gravida at eget metus. Maecenas faucibus
-            mollis interdum.
-          </p>
-
-          <h4>Bucket List</h4>
-          <p>
-            Morbi leo risus, porta ac consectetur ac, vestibulum at eros. Cras
-            mattis consectetur purus sit amet fermentum.
-          </p>
-
-          <h4>Bucket List</h4>
-          <p>Maecenas sed diam eget risus varius blandit sit amet non magna.</p>
-        </div>
-      </div> -->
-
-{% endblock %}  
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

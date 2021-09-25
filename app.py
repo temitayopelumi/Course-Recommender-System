@@ -61,15 +61,9 @@ class CourseSchema(SQLAlchemyAutoSchema):
     option = fields.String(required=True)
     semester = fields.String(required=True)
     unit = fields.Number(required=True)
-
-
 @app.route('/')
 def hello_world():  # put application's code here
     return render_template('index.html')
-
-@app.route('/test')
-def hey():
-    return render_template('test.html')
 
 @app.route('/next', methods=["GET", "POST"])
 def home():
@@ -83,9 +77,8 @@ def home():
         if semester == "Harmattan":
             unit = int(1 + ((int(part)-1)*2))
         elif semester == "Rain":
-            unit = int((1 + ((int(part)-1)*2)) + 1)
-        print(unit)
-        prev_courses = Course.query.filter(Course.unit < unit)
+            unit = int((1 + ((int(part)-1)*2)) + 1) 
+        prev_courses = Course.query.filter(Course.option==option, Course.unit < unit)
         course_schema = CourseSchema(many=True)
         courses = course_schema.dump(user_data)
         course_schema2 = CourseSchema(many=True)
