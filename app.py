@@ -70,53 +70,27 @@ def home():
     if request.form:
         data = request.form
         part = data['part']
-        option = data['options']
+        # option = data['options']
         semester = data['semester']
-        user_data = Course.query.filter_by(
-            level=part, option=option, semester=semester)
         if semester == "Harmattan":
             unit = int(1 + ((int(part)-1)*2))
         elif semester == "Rain":
             unit = int((1 + ((int(part)-1)*2)) + 1) 
-        prev_courses = Course.query.filter(Course.option==option, Course.unit < unit)
-        course_schema = CourseSchema(many=True)
-        courses = course_schema.dump(user_data)
-        course_schema2 = CourseSchema(many=True)
-        prev_cou = course_schema2.dump(prev_courses)
-        p1H = [] 
-        p1R = []
-        p2H = []
-        p2R = []
-        p3H = []
-        p3R = []
-        p4H = []
-        p5H = []
-        p4R = []
-        p5R = []
-        for prev in prev_cou:
-            if prev['unit'] == 1:
-                p1H.append(prev)
-            elif prev['unit'] == 2:
-                p1R.append(prev)
-            elif prev['unit'] == 3:
-                p2H.append(prev)
-            elif prev['unit'] == 4:
-                p2R.append(prev)
-            elif prev['unit'] == 5:
-                p3H.append(prev)
-            elif prev['unit'] == 6:
-                p3R.append(prev)
-            elif prev['unit'] == 7:
-                p4H.append(prev)
-            elif prev['unit'] == 8:
-                p4R.append(prev)
-            elif prev['unit'] == 9:
-                p5H.append(prev)
-            elif prev['unit'] == 10:
-                p5R.append(prev)
-        return render_template("next.html", courses=courses, prev_courses=prev_courses,  p1H=p1H, p2H=p2H, p1R=p1R, p3R=p3R, p2R=p2R, p3H=p3H, p4H=p4H, p4R=p4R, p5H=p5H, p5R=p5R, unit=unit)
-    return render_template("index.html")
+        return render_template("next.html", unit=unit)
 
+
+@app.route('/result', methods=['POST'])
+def result():
+    if request.method == 'POST':
+        to_predict_list = request.form.to_dict()
+        # to_predict_list = list(to_predict_list.values())
+        # to_predict_list = list(map(int, to_predict_list))
+        # result = ValuePredictor(to_predict_list)
+        # if int(result) == 1:
+        #     prediction = 'The patient should be readmitted'
+        # else:
+        #     prediction = 'The patient should not be readmited'
+        return render_template("result.html", prediction=to_predict_list)
 
 @app.route('/addcourse', methods=['GET', 'POST'])
 def course():
