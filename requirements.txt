@@ -5,11 +5,15 @@ greenlet==1.1.1
 gunicorn==20.1.0
 itsdangerous==2.0.1
 Jinja2==3.0.1
+joblib==1.1.0
 MarkupSafe==2.0.1
 marshmallow==3.13.0
 marshmallow-sqlalchemy==0.26.1
 numpy==1.21.4
 psycopg2==2.9.1
 psycopg2-binary==2.9.1
+scikit-learn==1.0.1
+scipy==1.7.3
 SQLAlchemy==1.4.23
+threadpoolctl==3.0.0
 Werkzeug==2.0.1
