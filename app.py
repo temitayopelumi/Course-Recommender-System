@@ -3,6 +3,9 @@ from flask_sqlalchemy import SQLAlchemy
 from marshmallow import fields
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 import os
+import pickle
+from joblib import load
+import numpy as np
 
 app = Flask(__name__)
 ENV = 'prod'
@@ -78,19 +81,37 @@ def home():
             unit = int((1 + ((int(part)-1)*2)) + 1) 
         return render_template("next.html", unit=unit)
 
+def ValuePredictor(to_predict_list, n):
+    to_predict = np.array(to_predict_list).reshape(1, n)
+    if n == 2:  
+        loaded_model = pickle.load(open('CGPA2.sav', 'rb'))
+        print("got here")
+        
+    elif n == 3:
+        loaded_model = pickle.load(open("CGPA3.sav", "rb"))
+    elif n == 4:
+        loaded_model = pickle.load(open("CGPA4.sav", "rb"))
+    elif n == 5:
+        loaded_model = pickle.load(open("CGPA5.sav", "rb"))
+    elif n == 6:
+        loaded_model = pickle.load(open("CGPA6.sav", "rb"))
+    result = loaded_model.predict(to_predict)
+    return result
 
 @app.route('/result', methods=['POST'])
 def result():
     if request.method == 'POST':
         to_predict_list = request.form.to_dict()
-        # to_predict_list = list(to_predict_list.values())
+        print(to_predict_list)
+        to_predict_list = list(to_predict_list.values())
+        n= len(to_predict_list)
         # to_predict_list = list(map(int, to_predict_list))
-        # result = ValuePredictor(to_predict_list)
+        result = ValuePredictor(to_predict_list, n)
         # if int(result) == 1:
         #     prediction = 'The patient should be readmitted'
         # else:
         #     prediction = 'The patient should not be readmited'
-        return render_template("result.html", prediction=to_predict_list)
+        return render_template("result.html", prediction=to_predict_list, n=n, result=result)
 
 @app.route('/addcourse', methods=['GET', 'POST'])
 def course():

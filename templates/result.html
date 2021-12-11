@@ -1,5 +1,29 @@
 {% extends "base.html" %}
 
 {% block content %}
-{{prediction}}
+
+
+    <div class="absolute bg-black opacity-80 inset-0 z-0"></div>
+ <div class="w-full  max-w-lg p-5 relative mx-auto my-auto rounded-xl shadow-lg  bg-white ">
+   <!--content-->
+   <div class="">
+     <!--body-->
+     <div class="text-center p-5 flex-auto justify-center">
+         The predicted Cummulative Grade Point for this student next semester is 
+        <h2 class="text-xl font-bold py-4 ">{{result[0]}}</h3>               
+     </div>
+     <!--footer-->
+     <div class="p-3  mt-2 text-center space-x-4 md:block">
+         <button class="mb-2 md:mb-0 bg-white px-5 py-2 text-sm shadow-sm font-medium tracking-wider border text-gray-600 rounded-full hover:shadow-lg hover:bg-gray-100">
+            <a href="/">Go back</a> 
+         </button>
+         
+     </div>
+   </div>
+ </div>
+
+
+
+
+
 {% endblock %}

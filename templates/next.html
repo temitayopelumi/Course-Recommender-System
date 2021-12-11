@@ -3,19 +3,20 @@
   
   <div class="md:grid md:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
-      <div class="px-4 sm:px-0 pt-5">
+      <!-- <div class="px-4 sm:px-0 pt-5">
         <h4 class="text-xl font-medium leading-6 text-gray-900">The courses required to do for this semester are</h4>
         <ol class="list-group list-group-numbered">
           <li class="list-group-item"><strong>Course Code</strong></li>
+          
           <!-- {% for course in courses %}
           <li class="list-group-item">
             <tr>
               <td scope="row block text-sm font-medium text-gray-700">{{course['course_code']}}</td>
             </tr>
           </li>
-          {% endfor %} -->
+          {% endfor %} 
         </ol>
-      </div>
+      </div> -->
     </div>
 
     <div class="mt-5 md:mt-0 md:col-span-2">
@@ -34,7 +35,7 @@
             {% for i in range(unit) %}
             <p><input
               type="number"
-              min="1" max="5"
+              min="0.1" max="5"
               step="0.01"
               required
               class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
@@ -207,7 +208,7 @@
            
         </div>-->
       {% else %}
-      <h3 class="text-xl font-medium leading-6 text-gray-900">Can't recommend. New Student</h3>
+      <h3 class="text-xl font-medium leading-6 text-gray-900">Can't predict. New Student</h3>
       {% endif %}
     </div>
   </div>
