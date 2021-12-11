@@ -7,9 +7,8 @@
     <div class="md:col-span-1">
       <div class="px-4 sm:px-0 pt-5">
         <h3 class="text-xl font-medium leading-6 text-gray-900">Student's Information</h3>
-        <p class="mt-1 text-lg text-blue-600">
-          Just answer a few questions
-          so that we can predict the grades for next semester.
+        <p class="mt-1 text-sm text-blue-600">
+          The prediction works for part two to part four
         </p>
       </div>
     </div>
@@ -17,32 +16,23 @@
       <form method="POST" action="/next">
         <div class="shadow overflow-hidden sm:rounded-md">
           <div class="px-4 py-5 bg-white sm:p-6">
+            <p>Enter the Level/Part and the semster you want to predict</p>
             <div class="grid  gap-6">
               <div class="col-span-6 sm:col-span-3"><label class="block text-sm font-medium text-gray-700">Student's
                   Part<span class="text-danger">
                     *</span></label>
                 <select name="part"
                   class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                  <option value="1">One</option>
+                  <opation value="1">One</opation>
                   <option value="2">Two</option>
                   <option value="3">Three</option>
-                  <!-- <option value="4">Four</option>
-                  <option value="5">Five</option> -->
+                  <option value="4">Four</option>
                 </select>
               </div>
 
             </div>
-            <!-- <div class="col-span-6 sm:col-span-3">
-              <label class="block text-sm font-medium text-gray-700">Option<span class="text-danger"> *</span></label>
-              <select name="options"
-                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                <option value="Engineering">Engineering</option>
-                <option value="Mathematics">Mathematics</option>
-                <option value="Economics">Economics</option>
-              </select>
-            </div> -->
             <div class="col-span-6 sm:col-span-3">
-              <label class="block text-sm font-medium text-gray-700">Current Semester<span class="text-danger">
+              <label class="block text-sm font-medium text-gray-700">Semester<span class="text-danger">
                   *</span></label>
               <select name="semester"
                 class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">

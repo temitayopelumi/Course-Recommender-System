@@ -102,16 +102,15 @@ def ValuePredictor(to_predict_list, n):
 def result():
     if request.method == 'POST':
         to_predict_list = request.form.to_dict()
-        print(to_predict_list)
         to_predict_list = list(to_predict_list.values())
         n= len(to_predict_list)
-        # to_predict_list = list(map(int, to_predict_list))
         result = ValuePredictor(to_predict_list, n)
-        # if int(result) == 1:
-        #     prediction = 'The patient should be readmitted'
-        # else:
-        #     prediction = 'The patient should not be readmited'
-        return render_template("result.html", prediction=to_predict_list, n=n, result=result)
+        test_list = [float(i) for i in to_predict_list]
+        former_cpg=test_list[n-1]
+        #the grade point of this current semseter.
+        cga=(result[0])- (former_cpg)+result[0]
+        print(cga)
+        return render_template("result.html", prediction=to_predict_list, n=n, result=result,  cga=cga)
 
 @app.route('/addcourse', methods=['GET', 'POST'])
 def course():
