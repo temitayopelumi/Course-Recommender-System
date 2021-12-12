@@ -73,13 +73,18 @@ def home():
     if request.form:
         data = request.form
         part = data['part']
-        # option = data['options']
+        option = data['options']
         semester = data['semester']
+        user_data = Course.query.filter_by(
+            level=part, option=option, semester=semester)
         if semester == "Harmattan":
             unit = int(1 + ((int(part)-1)*2))
         elif semester == "Rain":
-            unit = int((1 + ((int(part)-1)*2)) + 1) 
-        return render_template("next.html", unit=unit)
+            unit = int((1 + ((int(part)-1)*2)) + 1)
+        course_schema = CourseSchema(many=True)
+        courses = course_schema.dump(user_data)
+ 
+        return render_template("next.html", unit=unit,courses=courses)
 
 def ValuePredictor(to_predict_list, n):
     to_predict = np.array(to_predict_list).reshape(1, n)
@@ -109,8 +114,7 @@ def result():
         former_cpg=test_list[n-1]
         #the grade point of this current semseter.
         cga=(result[0])- (former_cpg)+result[0]
-        print(cga)
-        return render_template("result.html", prediction=to_predict_list, n=n, result=result,  cga=cga)
+        return render_template("result.html", prediction=to_predict_list, n=n, result=round(result[0],2),  cga=round(cga,2))
 
 @app.route('/addcourse', methods=['GET', 'POST'])
 def course():

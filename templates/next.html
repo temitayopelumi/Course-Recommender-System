@@ -3,6 +3,19 @@
   
   <div class="md:grid md:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
+      <div class="px-4 sm:px-0 pt-5">
+        <h4 class="text-xl font-medium leading-6 text-gray-900">The courses required to do for this semester are</h4>
+        <ol class="list-group list-group-numbered">
+          <li class="list-group-item"><strong>Course Code</strong></li>
+          {% for course in courses %}
+          <li class="list-group-item">
+            <tr>
+              <td scope="row block text-sm font-medium text-gray-700">{{course['course_code']}}</td>
+            </tr>
+          </li>
+          {% endfor %}
+        </ol>
+      </div>
     </div>
 
     <div class="mt-5 md:mt-0 md:col-span-2">
