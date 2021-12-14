@@ -109,9 +109,7 @@ def home():
             unit = int((1 + ((int(part)-1)*2)) + 1)
         course_schema = CourseSchema(many=True)
         courses = course_schema.dump(user_data)
-        print(part, sem, option)
-        print(courses_dict)
-
+        
         if (part == 2) and (sem == 1) and (option == "Engineering"):
             print("got here")
             course_by_student = courses_dict.get('P2_1_ENGR')
@@ -151,52 +149,49 @@ def home():
         elif part == 4 and sem == 1 and option == "Maths":
             course_by_student = courses_dict.get('P4_1_MTH')
         
-        print(course_by_student)
 
         
-    # u = [course_unit[course_unit["Course"]== i]["Unit"].tolist() for i in course_by_student]
-    # flat_list_u = [item for sublist in u for item in sublist]
-    # df = pd.DataFrame({"courses": course_by_student, "Units": flat_list_u}).sort_values(by = "Units")
+    u = [course_unit[course_unit["Course"]== i]["Unit"].tolist() for i in course_by_student]
+    flat_list_u = [item for sublist in u for item in sublist]
+    df = pd.DataFrame({"courses": course_by_student, "Units": flat_list_u}).sort_values(by = "Units")
 
-    # if Last_CGPA < 3.5:
-    #     valid = []
-    #     others = []
-    #     for i in df["courses"]:
-    #         if i[:3] == "CSC" or i[:3] == "CPE":
-    #             others.append(i)
-    #         else:
-    #             valid.append(i)
-    #     units = []
-    #     flat_list = []
-    #     rem_course = []  
+    if Last_CGPA < 3.5:
+        valid = []
+        others = []
+        for i in df["courses"]:
+            if i[:3] == "CSC" or i[:3] == "CPE":
+                others.append(i)
+            else:
+                valid.append(i)
+        units = []
+        flat_list = []
+        rem_course = []  
 
-    #     for i in valid:
-    #         units.append(course_unit[course_unit["Course"]== i]["Unit"].tolist())
+        for i in valid:
+            units.append(course_unit[course_unit["Course"]== i]["Unit"].tolist())
             
-    #     flat_list = [item for sublist in units for item in sublist]
-    #     units_sum = sum(flat_list)
+        flat_list = [item for sublist in units for item in sublist]
+        units_sum = sum(flat_list)
             
-    #     if units_sum < 20:
-    #         for i in others:
-    #             unit = course_unit[course_unit["Course"]== i]["Unit"].tolist()
-    #             units_sum = np.add(units_sum, unit)
-    #             rem_course.append(i)
-    #             if units_sum + unit > 20:
-    #                 break
-    #             elif units_sum < 20:
-    #                 continue
+        if units_sum < 20:
+            for i in others:
+                unit = course_unit[course_unit["Course"]== i]["Unit"].tolist()
+                units_sum = np.add(units_sum, unit)
+                rem_course.append(i)
+                if units_sum + unit > 20:
+                    break
+                elif units_sum < 20:
+                    continue
                 
                 
-    #         required_courses = valid + rem_course
-    #         print("The required course you should register for this semester are:",required_courses)
-    #         print("With total units of:",units_sum)
-    #     else:
-    #         print(valid)
-    #         print("With total units of:",units_sum)
-    # else:
-    #     print("You can go ahead to register for all your courses")
+            required_courses = valid + rem_course
+            response = "The required course you should register for this semester are:",required_courses,"With total units of:",units_sum
+        else:
+            response=valid, "With total units of:",units_sum
+    else:
+        response = "You can go ahead to register for all your courses" 
  
-        return render_template("next.html", unit=unit,courses=courses, )
+    return render_template("next.html", unit=unit,courses=courses, response=response)
 
 def ValuePredictor(to_predict_list, n):
     to_predict = np.array(to_predict_list).reshape(1, n)
