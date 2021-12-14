@@ -14,7 +14,7 @@ if ENV == 'env':
     app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://temi:password@localhost/temidb'
 else:
-    app.debug = False
+    app.debug = True
     app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://mzxkrgcsaxjpmb:789a71c49a2876f8a8b01528a8d67dcb094b2d12a6009da7891b49732af1d7d9@ec2-54-146-84-101.compute-1.amazonaws.com:5432/devhf16j3594ku'
 
 
@@ -109,7 +109,7 @@ def home():
             unit = int((1 + ((int(part)-1)*2)) + 1)
         course_schema = CourseSchema(many=True)
         courses = course_schema.dump(user_data)
-
+        print(part, sem, option)
 
         if (part == 2) and (sem == 1) and (option == "Engineering"):
             course_by_student = courses_dict.get('P2_1_ENGR')
