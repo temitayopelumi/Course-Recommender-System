@@ -4,7 +4,7 @@
   <div class="md:grid md:grid-cols-3 md:gap-6">
     <div class="md:col-span-1">
       <div class="px-4 sm:px-0 pt-5">
-        <h4 class="text-xl font-medium leading-6 text-gray-900">The courses required to do for this semester are</h4>
+        <h4 class="text-xl font-medium leading-6 text-gray-900">Semester Courses</h4>
         <ol class="list-group list-group-numbered">
           <li class="list-group-item"><strong>Course Code</strong></li>
           {% for course in courses %}
@@ -19,39 +19,15 @@
     </div>
 
     <div class="mt-5 md:mt-0 md:col-span-2">
-
-      {% if unit == 1 %}
-      <h3 class="text-xl font-medium leading-6 text-gray-900">Can't predict. New Student</h3>
-      {% elif unit == 2%}
-      <h3 class="text-xl font-medium leading-6 text-gray-900">No cummulative GP yet</h3>
-      {% elif unit > 2 and unit < 8 %}
-      <h4 class="text-xl font-medium leading-6 text-gray-900">Enter Student's Cummulative GP in Previous semseters</h4>
-
-      <form id="regForm" action="/result" method="POST">
-        <div class="shadow overflow-hidden sm:rounded-md ">
-          <div class="px-4 py-5 bg-white sm:p-6">
-            <div class="text-left form-group ">
-              <label class="block text-sm font-medium text-gray-700">Student's Cummulative Grade point<span
-                  class="text-danger">
-                  *</span></label>
-            </div>
-            {% for i in range(unit-1) %}
-            <p><input
-              type="number"
-              min="0.1" max="5"
-              step="0.01"
-              required
-              class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                name={{i}} placeholder="Enter student's CPGA" /></p><br>
-              {% endfor %}
-              <input type="submit" value="Submit">
-          </div>
-        </div>
-      </form>
-      {% else %}
-      <h3 class="text-xl font-medium leading-6 text-gray-900">Student's last semster. No prediction again</h3>
-      {% endif %}
-    </div>
+      <div class="p-3 justify-around bg-white max-w-sm rounded-sm overflow-hidden shadow-lg m-16">
+        <div class="p-3 text-center font-medium text-base text-gray-darker mb-4">
+          Recommendation
+        </div> 
+        <p class="pl-3 font-normal text-gray-dark text-sm mb-2"> {{response_1}}  </p> 
+        <p class="pl-3 font-normal text-gray-dark text-sm mb-2"> {{response_2}}  </p>
+        <!-- <p class="font-normal text-gray-dark text-sm mb-2"> {{response_3}}  </p>
+        <p class="font-normal text-gray-dark text-sm mb-2"> {{response_4}}  </p> -->
+      </div>
   </div>
 
 

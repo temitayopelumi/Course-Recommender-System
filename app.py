@@ -109,7 +109,10 @@ def home():
             unit = int((1 + ((int(part)-1)*2)) + 1)
         course_schema = CourseSchema(many=True)
         courses = course_schema.dump(user_data)
-        
+        print(part, option, sem)
+        part = int(part)
+        print(type(part), type(option), type(sem))
+
         if (part == 2) and (sem == 1) and (option == "Engineering"):
             print("got here")
             course_by_student = courses_dict.get('P2_1_ENGR')
@@ -155,7 +158,7 @@ def home():
     flat_list_u = [item for sublist in u for item in sublist]
     df = pd.DataFrame({"courses": course_by_student, "Units": flat_list_u}).sort_values(by = "Units")
 
-    if Last_CGPA < 3.5:
+    if float(Last_CGPA) < 3.35:
         valid = []
         others = []
         for i in df["courses"]:
@@ -185,13 +188,24 @@ def home():
                 
                 
             required_courses = valid + rem_course
-            response = "The required course you should register for this semester are:",required_courses,"With total units of:",units_sum
+            required_courses = ", ".join(required_courses)
+            
+            response_1 = "The system recommends that this student takes only the following courses this semester:"
+            response_2  =  required_courses
+            response_3 = "Total units is"
+            response_4 = units_sum
         else:
-            response=valid, "With total units of:",units_sum
+            response_1 = valid
+            response_2 = "" #With total units of:
+            response_3 = units_sum
+            response_4 = ""
     else:
-        response = "You can go ahead to register for all your courses" 
+        response_1 = "You can go ahead to register for all your courses" 
+        response_2 = ""
+        response_3 = ""
+        response_4 = ""
  
-    return render_template("next.html", unit=unit,courses=courses, response=response)
+    return render_template("next.html", unit=unit,courses=courses, response_1=response_1, response_2=response_2, respnse_3=response_3, response_4=response_4)
 
 def ValuePredictor(to_predict_list, n):
     to_predict = np.array(to_predict_list).reshape(1, n)
